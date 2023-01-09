@@ -18,7 +18,7 @@ import BatchRoutes from "./routes/BatchRoutes";
 import PaymentRoutes from "./routes/SubscriptionRoutes";
 
 const app = express ();
-const PORT = 3000;
+const PORT = 8000;
 
 export const prisma = new PrismaClient ()
 

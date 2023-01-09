@@ -32,7 +32,7 @@ const CheckBatch = async (req: Request, res: Response, next: NextFunction) => {
         return;
     }
 
-    // Setting the price that is fetched from batch details 
+    // Setting the price that is fetched from batch details as headers
     req.body ['price'] = price;
 
     next ();

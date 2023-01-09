@@ -1,4 +1,5 @@
 import { User } from "@prisma/client";
+import { Decimal } from "@prisma/client/runtime";
 import { NextFunction, Response, Request, response } from "express";
 import { prisma } from "../app";
 import APIError from "../errors/APIError";
@@ -43,9 +44,27 @@ import APIError from "../errors/APIError";
 
 export const createUser = async (req: Request, res: Response, next: NextFunction) =>{
   const userData : User = req.body;
+  const {first_name} = req.body
+  const {last_name} = req.body;
+  const phoneno = req.body.phoneno ? parseInt(req.body.phoneno, 10) : null;
+  const {email} = req.body;
+  const age = parseInt(req.body.age, 10);
+  const {gender} = req.body;
+  const height = req.body.height ? parseInt(req.body.height, 10) : null;
+  const weight = req.body.weight ? parseFloat(req.body.weight) : null;
+
   try {
       await prisma.user.create({
-          data: userData,
+          data: {
+            first_name : first_name,
+            last_name : last_name,
+            phoneno : phoneno,
+            email : email,
+            age : age,
+            gender : gender,
+            height : height,
+            weight : weight
+          }
       });
       res.status(201).json({
           message: "User created Successfully",
